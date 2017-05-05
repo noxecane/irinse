@@ -7,11 +7,9 @@
 (deftest test-factory
   (async done
    (let [[f v$] (sut/factory)]
-     (rx/subscribe v$ (fn [args]
-                        (let [v (apply + args)]
-                          (is 10 v))))
+     (rx/on-value v$ #(is (<= % 10)))
      (f 10)
-     (f 1 9)
-     (f 5 5)
-     (f 2 3 4 1)
+     (f 9)
+     (f 5)
+     (f 1)
      (done))))
