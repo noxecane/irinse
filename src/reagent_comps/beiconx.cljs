@@ -9,24 +9,24 @@
   "Create a triple of an observable, its push function
    and a termination function."
   []
-  (let [sub      (rx/subject)]
+  (let [sub (rx/subject)]
     [sub #(rx/push! sub %) #(rx/end! sub)]))
 
 
 (defn x->ratom
   "Convert an observable to a reagent atom. Can accept a fold to
    reduce over the state rather than write directly to it."
-  ([stream]
-   (x->ratom nil stream))
+  ([ob]
+   (x->ratom nil ob))
 
-  ([initial-value stream]
-   (let [state (r/atom initial-value)
-         sub   (rx/subscribe stream #(reset! state %))]
+  ([a ob]
+   (let [state (r/atom a)
+         sub   (rx/subscribe ob #(reset! state %))]
      state))
 
-  ([initial-value fold stream]
-   (let [state (r/atom initial-value)
-         sub   (rx/subscribe stream #(swap! state fold %))]
+  ([a fold ob]
+   (let [state (r/atom a)
+         sub   (rx/subscribe ob #(swap! state fold %))]
      state)))
 
 
@@ -36,5 +36,16 @@
   [ch]
   (let [[v f c] (factory)]
     (go-loop [x (a/<! ch)]
-      (if (some? x) (f x) (c)))
+      (when (some? x)
+        (f x)
+        (recur (a/<! ch)))
+      (c))
     v))
+
+
+(defn chan-map
+  "flat-map for core.async channels"
+  [f ob]
+  (->> (rx/map f ob)
+       (rx/map from-chan)
+       (rx/flat-map)))
