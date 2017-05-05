@@ -5,5 +5,5 @@
 (defn factory []
   (let [stream (atom nil)
         stream$ (rx/from-atom stream)
-        next-val (fn [& args] (reset! stream (vec args)))]
+        next-val #(reset! stream %)]
     [next-val stream$]))
