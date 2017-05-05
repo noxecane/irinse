@@ -17,7 +17,10 @@
   :plugins [[lein-figwheel "0.5.10"]
             [lein-cljsbuild "1.1.5" :exclusions [[org.clojure/clojure]]]]
 
+  :hooks [leiningen.cljsbuild]
+
   :source-paths ["src"]
+  :test-paths ["test"]
 
   :cljsbuild {:builds
               [{:id "dev"
