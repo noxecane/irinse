@@ -1,39 +1,31 @@
 # reagent-comps
 
-FIXME: Write a one-line description of your library/project.
+## Introduction
+`reagent-comps` is a collection of simple reagent components.
 
-## Overview
+## Install
+The simplest way to use `reagent-comps` in a clojurescript project, is by including it in the dependency vector on your project.clj file:
 
-FIXME: Write a paragraph about the library/project and highlight its goals.
+```clojure
+[reagent-components "0.1.0"]
+```
 
-## Setup
+## Events
 
-To get an interactive development environment run:
+### Creating event streams
+To listen to events from a reagent component, you'll need to create an event stream tuple. It contains the function for *pushing* and the actual *observable*.
 
-    lein figwheel
+```clojure
+(require '[beicon.core :as rx]
+         '[reagent-comp.beiconx :as rxt])
 
-and open your browser at [localhost:3449](http://localhost:3449/).
-This will auto compile and send all changes to the browser without the
-need to reload. After the compilation process is complete, you will
-get a Browser Connected REPL. An easy way to try it is:
+(let [[f v$] (rxt/factory)
+      cancel (rx/on-value v$ #(println "event:" %))]
+    (f 1) ;; ==> event: [1] always passes arrays
+    (f 1 2) ;; ==> event: [1 2])
+```
 
-    (js/alert "Am I connected?")
-
-and you should see an alert in the browser window.
-
-To clean all compiled files:
-
-    lein clean
-
-To create a production build run:
-
-    lein do clean, cljsbuild once min
-
-And open your browser in `resources/public/index.html`. You will not
-get live reloading, nor a REPL. 
 
 ## License
 
-Copyright © 2014 FIXME
-
-Distributed under the Eclipse Public License either version 1.0 or (at your option) any later version.
+`reagent-comps` is licensed under GPLv3 license:
