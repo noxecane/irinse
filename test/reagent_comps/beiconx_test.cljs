@@ -6,8 +6,6 @@
             [cljs.core.async :as a]))
 
 
-
-
 (deftest test-converter
   (testing "Simple values"
     (let [[v f c] (sut/factory)
