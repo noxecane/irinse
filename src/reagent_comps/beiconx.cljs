@@ -5,19 +5,20 @@
             [cljs.core.async :as a]))
 
 
-(defn factory
-  "Create a triple of an observable, its push function
-   and a termination function."
-  []
-  (let [sub (rx/subject)]
-    [sub #(rx/push! sub %) #(rx/end! sub)]))
+(extend-type rx/Observable
+  IFn
+  (-invoke
+    ([this]
+     (rx/end! this))
+    ([this v]
+     (rx/push! this v))))
 
 
-(defn x->ratom
+(defn to-ratom
   "Convert an observable to a reagent atom. Can accept a fold to
    reduce over the state rather than write directly to it."
   ([ob]
-   (x->ratom nil ob))
+   (to-ratom nil ob))
 
   ([a ob]
    (let [state (r/atom a)
@@ -34,18 +35,10 @@
   "Creates an observable consuming events from the given core.async
    channel."
   [ch]
-  (let [[v f c] (factory)]
+  (let [v (rx/subject)]
     (go-loop [x (a/<! ch)]
       (when (some? x)
-        (f x)
+        (v x)
         (recur (a/<! ch)))
-      (c))
+      (v))
     v))
-
-
-(defn chan-map
-  "flat-map for core.async channels"
-  [f ob]
-  (->> (rx/map f ob)
-       (rx/map from-chan)
-       (rx/flat-map)))
