@@ -48,7 +48,7 @@ We could use reagent atoms to store the values from streams mainly because reage
 One could also reduce over the state
 ```clojure
 (def fill-list (rx/subject))
-(def ilist (rxt/to-ratom [] conj))
+(def ilist (rxt/to-ratom [] conj fill-list))
 
 (fill-list 12)
 (fill-list 13)
