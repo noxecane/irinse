@@ -6,14 +6,6 @@
             [cljs.core.async :as a]))
 
 
-(deftest test-factory
-  (async done
-         (let [[v f c] (sut/factory)
-               sub     (rx/on-value v #(is (<= % 10)))]
-           (doseq [x [1 2 4 5 9 10]]
-             (f x))
-           (c)
-           (done))))
 
 
 (deftest test-converter
@@ -51,14 +43,3 @@
              (doseq [x [1 2 3 10]]
                (a/put! e x))
              (done)))))
-
-
-(deftest async-map
-  (async done
-         (let [f (fn [x]
-                   (let [k (a/chan 1)]
-                     (go (a/>! k (* x 2)))
-                     k))
-               n (sut/chan-map f (rx/of 10))
-               sub (rx/on-value n #(is (= 20 %)))]
-           (done))))
