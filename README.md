@@ -74,6 +74,19 @@ subscribers. Hence, more like subjects, only events received after subscription 
 ;; ==> From Channel: 10
 ```
 
+### Creating Simple forms
+For instance to create a login form component
+```clojure
+(require '[reagent-comp.form.core :as form])
+
+(defn model [{:keys [login-service]}]
+  (let [write  (rx/subject)
+        submit (rx/subject)
+        state   (rx/writes write) ;; reduce write events over a map [:name :value]
+        login  (rx/flat-map login-service (form/submit state submit))] ;
+    ))
+```
+
 ### Creating an auto-select field
 This is the equivalent to a select menu with autocompletion. It can accept sources from both async and synchronous services.
 Async services have to return an observable.
