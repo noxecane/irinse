@@ -42,3 +42,9 @@
         (recur (a/<! ch)))
       (v))
     v))
+
+
+(defn log
+  "Creates a subscriber that logs to console."
+  [prefix ob]
+  (rx/on-value ob #(println (str prefix ":") %)))
