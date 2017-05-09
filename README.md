@@ -7,7 +7,7 @@
 The simplest way to use `reagent-comps` in a clojurescript project, is by including it in the dependency vector on your project.clj file:
 
 ```clojure
-[reagent-components "0.1.0"]
+[reagent-comps "0.1.0"]
 ```
 
 ## Events
