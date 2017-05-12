@@ -38,9 +38,9 @@
         show?   (beiconx/to-ratom false suggest?)]
     (fn []
       [:div.autoselect
-       [:input {:type       "text"
-                :class-name class-name
-                :on-change  (forms/input hint)
-                :value      @buffer}]
+       [:input.input {:type       "text"
+                      :class-name class-name
+                      :on-change  (forms/input hint)
+                      :value      @buffer}]
        (into [:ul.options {:class-name (if @show? "show" "")}]
              (map (option-fn render selection)) @options)])))
