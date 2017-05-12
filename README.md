@@ -77,53 +77,28 @@ subscribers. Hence, more like subjects, only events received after subscription 
 ### Creating Simple forms
 For instance to create a login form component
 ```clojure
-(require '[reagent-comp.form.core :as form])
+(require '[reagent-comp.forms :as form])
 
 (defn model [{:keys [login-service]}]
   (let [write  (rx/subject)
         submit (rx/subject)
-        state   (rx/writes write) ;; reduce write events over a map [:name :value]
-        login  (rx/flat-map login-service (form/submit state submit))] ;
-    ))
+        state  (form/writes write) ;; reduce write events over a map [:name :value]
+        login  (rx/flat-map  submit)] ;
+    {:write  write
+     :submit submit
+     :state  state}))
+
+(defn view [{:keys [write submit state]}]
+  (fn []
+    [:form
+      [:input.input {:type      "text"
+                     :on-change (form/input write [:username])}]
+      [:input.input {:type      "password"
+                     :on-change (form/input write [:username])}]
+      [:button.button {:type     "button"
+                       :on-click #(submit @state)}]]))
 ```
 
-### Creating an auto-select field
-This is the equivalent to a select menu with autocompletion. It can accept sources from both async and synchronous services.
-Async services have to return an observable.
-```clojure
-(def languages
-  [["Clojure" :hard]
-   ["Java" :complex]
-   ["Javascript" :messy]
-   ["PHP" :ugly]
-   ["Python" :popular]
-   ["Haskell" :esoteric]
-   ["Bash" :dirty]
-   ["C" :practical]
-   ["AWK" :proper]])
-
-
-(defn find-lang [name]
-  (letfn [(lang? [[lang-name :as l]]
-            (let [n (clojure.string/lower-case name)
-                  ln (clojure.string/lower-case lang-name)]
-              (clojure.string/starts-with? ln n)))]
-    (filter lang? languages)))
-
-
-(defn render [[name type]]
-  [:div.lang
-   [:p.name name]
-   [:small (str type)]])
-
-
-(defn lang-auto []
-  [autoselect/view
-   (autoselect/model {:suggest-fn find-lang
-                      :on-select  #(println "Selected" %)})
-   {:show   first
-    :render render}])
-```
 ## License
 
 `reagent-comps` is licensed under GPLv3 license:
