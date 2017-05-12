@@ -94,7 +94,7 @@ For instance to create a login form component
       [:input.input {:type      "text"
                      :on-change (form/input write [:username])}]
       [:input.input {:type      "password"
-                     :on-change (form/input write [:username])}]
+                     :on-change (form/input write [:password])}]
       [:button.button {:type     "button"
                        :on-click #(submit @state)}]]))
 ```
