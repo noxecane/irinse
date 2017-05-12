@@ -1,4 +1,4 @@
-(ns reagent-comps.containers.modal
+(ns reagent-comps.modal
   (:require [beicon.core :as rx]
             [reagent-comps.beiconx :as rxt]))
 

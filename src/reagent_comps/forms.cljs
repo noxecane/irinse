@@ -1,4 +1,4 @@
-(ns reagent-comps.forms.core
+(ns reagent-comps.forms
   (:require [beicon.core :as rx]
             [reagent-comps.beiconx :as rxt]))
 
