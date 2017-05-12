@@ -1,8 +1,8 @@
-(ns reagent-comps.forms.autoselect
+(ns reagent-comps.autoselect
   (:require [beicon.core :as rx]
             [reagent.core :as r]
-            [reagent-comps.beiconx :as beiconx]
-            [reagent-comps.forms.core :as forms]))
+            [reagent-comps.beiconx :as rxt]
+            [reagent-comps.forms :as forms]))
 
 
 (defn model [{:keys [suggest-fn async? on-select] :or {async? false}}]
@@ -33,9 +33,9 @@
 
 (defn view [{:keys [suggestions dirty suggest? selection hint]}
             {:keys [show render class-name] :or {class-name ""}}]
-  (let [buffer  (beiconx/to-ratom "" (rx/merge hint (rx/map show selection)))
-        options (beiconx/to-ratom [] suggestions)
-        show?   (beiconx/to-ratom false suggest?)]
+  (let [buffer  (rxt/to-ratom "" (rx/merge hint (rx/map show selection)))
+        options (rxt/to-ratom [] suggestions)
+        show?   (rxt/to-ratom false suggest?)]
     (fn []
       [:div.autoselect
        [:input.input {:type       "text"
