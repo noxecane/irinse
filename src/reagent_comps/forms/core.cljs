@@ -1,4 +1,6 @@
-(ns reagent-comps.forms.core)
+(ns reagent-comps.forms.core
+  (:require [beicon.core :as rx]
+            [reagent-comps.beiconx :as rxt]))
 
 
 (defn- text-event [ev]
@@ -7,14 +9,19 @@
 
 (defn input
   "Returns a function that's the composition of value extraction
-   and the given function. It also supports adding fixed args that
-   will be passed as an array with the event's value as the last
-   element to the passed function."
+   and the given function. It also supports setting the keys incase
+   this is a write event.(Note the keys must be an array)"
   ([ob]
    (comp ob text-event))
 
-  ([ob & args]
-   (let [arg-ls (vec args)]
-     #(->> (text-event %)
-           (conj arg-ls)
-           ob))))
+  ([ob keys]
+   #(->> (text-event %) (conj [keys]) ob)))
+
+
+(defn writes
+  "Reduces all write events over a ratom storing a map. Basically use this
+   as the singular consumer of write events"
+  [write]
+  (letfn [massoc ([state [ks v]]
+                  (assoc-in state ks v))]
+    (rxt/to-ratom {} massoc write)))
