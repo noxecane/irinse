@@ -1,4 +1,4 @@
-(defproject reagent-comps "0.1.0"
+(defproject tsaron/reagent-comps "0.1.0"
   :description "A collection of components built with beicon and reagent"
   :url "danceasarxx.github.io/reagent-comps/latest"
   :license {:name "General Public License v3.0"
