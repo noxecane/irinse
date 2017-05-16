@@ -1,4 +1,4 @@
-(defproject tsaron/irinse "0.1.0"
+(defproject tsaron/irinse "0.1.1-SNAPSHOT"
   :description "A collection of components built uing reagent, beicon and bulma"
   :url "https://tsaron.github.io/irinse"
   :license {:name "General Public License v3.0"

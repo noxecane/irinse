@@ -14,7 +14,7 @@
 
 
 (defn card-footer [& children]
-  (into [:footer.modal-card-foot] footer-children))
+  (into [:footer.modal-card-foot] children))
 
 
 (defn view-card

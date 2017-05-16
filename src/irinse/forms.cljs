@@ -22,6 +22,6 @@
   "Reduces all write events over a ratom storing a map. Basically use this
    as the singular consumer of write events"
   [write]
-  (letfn [massoc ([state [ks v]]
+  (letfn [(massoc [state [ks v]]
                   (assoc-in state ks v))]
     (rxt/to-ratom {} massoc write)))
