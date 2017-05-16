@@ -1,6 +1,6 @@
-(ns components.forms
+(ns irinse.forms
   (:require [beicon.core :as rx]
-            [components.beiconx :as rxt]))
+            [irinse.beiconx :as rxt]))
 
 
 (defn- text-event [ev]

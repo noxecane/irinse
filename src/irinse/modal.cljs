@@ -1,6 +1,6 @@
-(ns components.modal
+(ns irinse.modal
   (:require [beicon.core :as rx]
-            [components.beiconx :as rxt]))
+            [irinse.beiconx :as rxt]))
 
 
 (defn view
@@ -13,7 +13,7 @@
        [:button.modal-close {:on-click #(trigger false)}]])))
 
 
-(defn modal-card-footer [& children]
+(defn card-footer [& children]
   (into [:footer.modal-card-foot] footer-children))
 
 

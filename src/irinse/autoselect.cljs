@@ -1,7 +1,7 @@
-(ns reagent-comps.autoselect
+(ns irinse.autoselect
   (:require [beicon.core :as rx]
-            [components.beiconx :as rxt]
-            [components.forms :as forms]
+            [irinse.beiconx :as rxt]
+            [irinse.forms :as forms]
             [reagent.core :as r]))
 
 
