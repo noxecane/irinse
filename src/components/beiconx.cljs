@@ -1,5 +1,5 @@
-(ns reagent-comps.beiconx
-  (:require-macros [cljs.core.async.macros :refer [go go-loop]])
+(ns components.beiconx
+  (:require-macros [cljs.core.async.macros :refer [go-loop]])
   (:require [beicon.core :as rx]
             [reagent.core :as r]
             [cljs.core.async :as a]))

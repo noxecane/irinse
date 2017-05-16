@@ -1,8 +1,8 @@
 (ns reagent-comps.autoselect
   (:require [beicon.core :as rx]
-            [reagent.core :as r]
-            [reagent-comps.beiconx :as rxt]
-            [reagent-comps.forms :as forms]))
+            [components.beiconx :as rxt]
+            [components.forms :as forms]
+            [reagent.core :as r]))
 
 
 (defn model [{:keys [suggest-fn async? on-select] :or {async? false}}]

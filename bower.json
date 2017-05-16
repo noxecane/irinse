@@ -1,0 +1,41 @@
+{
+  "name": "app",
+  "authors": [
+    "Arewa Olakunle <danceasarxx@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendors/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bulma": "^0.4.1",
+    "font-awesome": "^4.7.0",
+    "notie": "^4.3.1"
+  },
+  "overrides": {
+    "notie": {
+      "main": [
+        "dist/notie.min.css",
+        "dist/notie.min.js"
+      ]
+    },
+    "bulma": {
+      "main": "css/bulma.css"
+    },
+    "font-awesome": {
+      "main": "css/font-awesome.min.css"
+    }
+  },
+  "resolutions": {
+    "bulma": "^0.4.1",
+    "notie": "^4.3.1"
+  }
+}

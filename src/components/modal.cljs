@@ -1,6 +1,6 @@
-(ns reagent-comps.modal
+(ns components.modal
   (:require [beicon.core :as rx]
-            [reagent-comps.beiconx :as rxt]))
+            [components.beiconx :as rxt]))
 
 
 (defn view

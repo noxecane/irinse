@@ -1,6 +1,6 @@
-(ns reagent-comps.forms
+(ns components.forms
   (:require [beicon.core :as rx]
-            [reagent-comps.beiconx :as rxt]))
+            [components.beiconx :as rxt]))
 
 
 (defn- text-event [ev]
