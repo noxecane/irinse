@@ -1,13 +1,13 @@
-# reagent-comps
+# Irinse
 
 ## Introduction
-`reagent-comps` is a collection of simple reagent components.
+`irinse` is a collection of simple reagent components.
 
 ## Install
-The simplest way to use `reagent-comps` in a clojurescript project, is by including it in the dependency vector on your project.clj file:
+The simplest way to use `irinse` in a clojurescript project, is by including it in the dependency vector on your project.clj file:
 
 ```clojure
-[reagent-comps "0.1.0"]
+[irinse "0.1.0"]
 ```
 
 ## Events
@@ -17,7 +17,7 @@ To listen to events from a reagent component, you'll need to create a subject. T
 
 ```clojure
 (require '[beicon.core :as rx]
-         '[reagent-comp.beiconx :as rxt]) ;; import beiconx as subjects can be used as functions
+         '[irinse.beiconx :as rxt]) ;; import beiconx as subjects can be used as functions
 
 (let [v (rx/subject)
       _ (rxt/log "Value" v)]
@@ -77,7 +77,7 @@ subscribers. Hence, more like subjects, only events received after subscription 
 ### Creating Simple forms
 For instance to create a login form component
 ```clojure
-(require '[reagent-comp.forms :as form])
+(require '[irinse.forms :as form])
 
 (defn model [{:keys [login-service]}]
   (let [write  (rx/subject)
@@ -101,4 +101,4 @@ For instance to create a login form component
 
 ## License
 
-`reagent-comps` is licensed under GPLv3 license:
+`irinse` is licensed under GPLv3 license:
