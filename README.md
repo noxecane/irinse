@@ -9,6 +9,7 @@ The simplest way to use `irinse` in a clojurescript project, is by including it 
 
 [![Clojars Project](https://img.shields.io/clojars/v/tsaron/components.svg)](https://clojars.org/tsaron/components)
 
+*Use `[tsaron/irinse "0.1.1-SNAPSHOT"]` as the original has a bug*
 
 ## Events
 
